@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Link, Tag } from './models';
 import { connectToDB } from './utils';
 
@@ -20,5 +21,16 @@ export const fetchLinks = async () => {
   } catch (error) {
     console.log(error);
     throw new Error('Failed to fetch links!');
+  }
+};
+
+export const fetchLinksByTag = async (tagId) => {
+  try {
+    connectToDB();
+    const links = await Link.find({ 'tags._id': new mongoose.Types.ObjectId(tagId) });
+    return links;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to fetch links by tag!');
   }
 };

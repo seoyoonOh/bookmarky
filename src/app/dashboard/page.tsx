@@ -1,20 +1,19 @@
 import styles from '../ui/dashboard/dashboard.module.css';
-import { fetchLinks, fetchTags } from '../lib/data';
+import { fetchLinks, fetchLinksByTag, fetchTags } from '../lib/data';
+import Tags from '../ui/dashboard/tags/tags';
 
-export default async function Dashboard() {
-  const tags = await fetchTags();
-  const links = await fetchLinks();
-
+export default async function Dashboard({ searchParams }) {
+  let tags = await fetchTags();
+  let links;
+  if (Object.keys(searchParams).length) {
+    links = await fetchLinksByTag(searchParams.tagId);
+  } else {
+    links = await fetchLinks();
+  }
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <ul className={styles.tags}>
-          {tags.map(({ _id, name, color }: { _id: string; name: string; color: string }) => (
-            <li className={styles.tag} style={{ '--color': `var(--tag-${color})` }} key={_id}>
-              {name}
-            </li>
-          ))}
-        </ul>
+        <Tags tags={tags} />
         <div>
           <button className={styles.edit}>edit</button>
           <button className={styles.add}>add</button>

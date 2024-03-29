@@ -1,0 +1,21 @@
+.tags {
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 13px;
+  background-color: var(--color);
+  min-width: 50px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.not_selected {
+  background-color: #323232;
+}
