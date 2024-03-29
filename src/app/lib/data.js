@@ -1,4 +1,4 @@
-import { Tag } from './models';
+import { Link, Tag } from './models';
 import { connectToDB } from './utils';
 
 export const fetchTags = async () => {
@@ -9,5 +9,16 @@ export const fetchTags = async () => {
   } catch (error) {
     console.log(error);
     throw new Error('Failed to fetch tags!');
+  }
+};
+
+export const fetchLinks = async () => {
+  try {
+    connectToDB();
+    const links = await Link.find();
+    return links;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to fetch links!');
   }
 };

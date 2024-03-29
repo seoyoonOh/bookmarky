@@ -1,8 +1,9 @@
 import styles from '../ui/dashboard/dashboard.module.css';
-import { fetchTags } from '../lib/data';
+import { fetchLinks, fetchTags } from '../lib/data';
 
 export default async function Dashboard() {
   const tags = await fetchTags();
+  const links = await fetchLinks();
 
   return (
     <div className={styles.container}>
@@ -19,7 +20,16 @@ export default async function Dashboard() {
           <button className={styles.add}>add</button>
         </div>
       </div>
-      <div className={styles.grid}></div>
+      <div className={styles.grid}>
+        {links.map(({ _id, url, title, image, tags }) => (
+          <div className={styles.link}>
+            <div className={styles.preview}>
+              <img src={image || 'https://images.pexels.com/photos/2574173/pexels-photo-2574173.jpeg?auto=compress&cs=tinysrgb&w=400'} alt="" />
+            </div>
+            <h1>{title}</h1>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
