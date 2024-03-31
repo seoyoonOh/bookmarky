@@ -24,6 +24,12 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
     replace(`${pathname}?${params}`);
   };
 
+  if (selectedTag === '') {
+    const params = new URLSearchParams(searchParams);
+    params.delete('tagId');
+    replace(`${pathname}`);
+  }
+
   return (
     <ul className={styles.tags}>
       {tags.map(({ _id, name, color }: { _id: string; name: string; color: string }) => (
