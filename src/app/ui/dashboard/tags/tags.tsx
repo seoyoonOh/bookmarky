@@ -9,8 +9,9 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
   const { replace } = useRouter();
   const pathname = usePathname();
   const [selectedTag, setSelectedTag] = useState<string>('');
+  const params = new URLSearchParams(searchParams);
+
   const handleTagSelect = (event: React.MouseEvent<HTMLLIElement>) => {
-    const params = new URLSearchParams(searchParams);
     const target = event.target as HTMLLIElement;
     let tagId = target.getAttribute('data-key') || '';
     if (selectedTag === tagId) {
@@ -24,8 +25,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
     replace(`${pathname}?${params}`);
   };
 
-  if (selectedTag === '') {
-    const params = new URLSearchParams(searchParams);
+  if (selectedTag === '' && params.size) {
     params.delete('tagId');
     replace(`${pathname}`);
   }
