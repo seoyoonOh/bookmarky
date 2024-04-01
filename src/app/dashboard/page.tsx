@@ -36,6 +36,16 @@ export default async function Dashboard({ searchParams }) {
             <Link href={url} target="_blank">
               <h1>{title}</h1>
             </Link>
+            <div className={styles.link_bottom}>
+              <div className={styles.link_tags}>
+                {tags?.map((tag) => (
+                  <div className={styles.link_tag} style={{ '--color': `var(--tag-${tag.color})` }}>
+                    {tag.name}
+                  </div>
+                ))}
+              </div>
+              <button className={styles.addTag}>+</button>
+            </div>
           </div>
         ))}
       </div>
