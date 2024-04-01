@@ -16,7 +16,7 @@ export const fetchTags = async () => {
 export const fetchLinks = async () => {
   try {
     connectToDB();
-    const links = await Link.find();
+    const links = await Link.find().populate('tags');
     return links;
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ export const fetchLinks = async () => {
 export const fetchLinksByTag = async (tagId) => {
   try {
     connectToDB();
-    const links = await Link.find({ 'tags._id': new mongoose.Types.ObjectId(tagId) });
+    const links = await Link.find({ tags: new mongoose.Types.ObjectId(tagId) }).populate('tags');
     return links;
   } catch (error) {
     console.log(error);
