@@ -3,9 +3,10 @@ import { fetchLinks, fetchLinksByTag, fetchTags } from '../lib/data';
 import Tags from '../ui/dashboard/tags/tags';
 import Link from '../../../node_modules/next/link';
 import { deleteLink } from '../lib/actions';
+import LinkBottom from '../ui/dashboard/linkBottom/linkBottom';
 
 export default async function Dashboard({ searchParams }) {
-  let tags = await fetchTags();
+  let tagList = await fetchTags();
   let links;
   if (Object.keys(searchParams).length) {
     links = await fetchLinksByTag(searchParams.tagId);
@@ -15,7 +16,7 @@ export default async function Dashboard({ searchParams }) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <Tags tags={tags} />
+        <Tags tags={tagList} />
         <div>
           <button className={styles.edit}>edit</button>
           <button className={styles.add}>add</button>
@@ -36,16 +37,7 @@ export default async function Dashboard({ searchParams }) {
             <Link href={url} target="_blank">
               <h1>{title}</h1>
             </Link>
-            <div className={styles.link_bottom}>
-              <div className={styles.link_tags}>
-                {tags?.map((tag) => (
-                  <div className={styles.link_tag} style={{ '--color': `var(--tag-${tag.color})` }}>
-                    {tag.name}
-                  </div>
-                ))}
-              </div>
-              <button className={styles.addTag}>+</button>
-            </div>
+            <LinkBottom linkId={_id} tagList={tagList} tagsForLink={JSON.parse(JSON.stringify(tags))} />
           </div>
         ))}
       </div>

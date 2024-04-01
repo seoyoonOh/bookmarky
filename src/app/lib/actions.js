@@ -1,5 +1,6 @@
 'use server';
 
+import mongoose from 'mongoose';
 import { revalidatePath } from 'next/cache';
 import urlMetadata from 'url-metadata/index';
 import { Link, Tag } from './models';
@@ -78,6 +79,28 @@ export const deleteLink = async (formData) => {
   } catch (error) {
     console.log(error);
     throw new Error('Failed to delete link!');
+  }
+
+  revalidatePath('/dashboard');
+};
+
+export const updateTagsForLink = async ({ _id, selectedTags }) => {
+  let tags = selectedTags.map((tagId) => {
+    return {
+      _id: new mongoose.Types.ObjectId(tagId),
+    };
+  });
+  try {
+    connectToDB();
+    await Link.findOneAndUpdate(
+      { _id },
+      {
+        tags: tags,
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to update tags for link!');
   }
 
   revalidatePath('/dashboard');

@@ -93,39 +93,3 @@
 .link h1:hover {
   text-decoration: underline;
 }
-
-.link_bottom {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.link_tags {
-  display: flex;
-  gap: 10px;
-}
-
-.link_tag {
-  font-size: 13px;
-  background-color: var(--color);
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  min-width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-}
-
-.addTag {
-  width: 36px;
-  height: 36px;
-  color: white;
-  background: #4f4f4f;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-}
