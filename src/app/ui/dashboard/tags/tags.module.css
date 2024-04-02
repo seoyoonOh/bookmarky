@@ -1,6 +1,8 @@
 .tags {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  z-index: 1;
 }
 
 .tag {
@@ -14,8 +16,112 @@
   justify-content: center;
   cursor: pointer;
   font-weight: bolder;
+  z-index: 1;
 }
 
 .not_selected {
   background-color: #323232;
+}
+
+.edit,
+.add {
+  border: 0;
+  width: 36px;
+  height: 36px;
+  color: white;
+  background: #4f4f4f;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.overlay,
+.palette_overlay {
+  display: none;
+}
+
+.editing .overlay,
+.palette_overlay {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #080318;
+  opacity: 0.3;
+}
+
+.palette_overlay {
+  background-color: transparent;
+}
+
+.editing .tag {
+  cursor: default;
+}
+
+.delete {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.formContainer {
+  margin-left: auto;
+  position: relative;
+}
+
+.form {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  display: flex;
+  gap: 10px;
+  z-index: 1;
+  background-color: #4f4f4f;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.name {
+  color: white;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  text-indent: 10px;
+  width: 100px;
+}
+
+.color {
+  background-color: var(--color);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+.palette {
+  position: absolute;
+  top: 56px;
+  left: -10px;
+  width: 148px;
+  height: 148px;
+  background-color: #4f4f4f;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.paletteColor {
+  cursor: pointer;
+  background-color: var(--color);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
 }
