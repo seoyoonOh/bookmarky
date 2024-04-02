@@ -8,7 +8,7 @@ import { connectToDB } from './utils';
 
 export const addTag = async (formData) => {
   const { name, color } = Object.fromEntries(formData);
-
+  if (name.length === 0) return;
   try {
     connectToDB();
     const newTag = new Tag({
