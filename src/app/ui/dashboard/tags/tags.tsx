@@ -61,7 +61,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
       ))}
       <div className={styles.formContainer}>
         <button className={styles.edit} onClick={() => setEditing(!editing)}>
-          +
+          {editing ? '-' : '+'}
         </button>
         {editing && (
           <form action={addTag} className={styles.form} onSubmit={() => setEditing(false)}>
