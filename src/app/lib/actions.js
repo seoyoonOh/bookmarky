@@ -36,9 +36,7 @@ export const updateTag = async (formData) => {
   }
 };
 
-export const deleteTag = async (formData) => {
-  const { _id } = Object.fromEntries(formData);
-
+export const deleteTag = async ({ _id }) => {
   try {
     connectToDB();
     await Tag.findByIdAndDelete(_id);
