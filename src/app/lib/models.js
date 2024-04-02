@@ -69,7 +69,7 @@ const linkSchema = new mongoose.Schema(
       type: String,
     },
     tags: {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag', unique: true }],
     },
     // user: {
     //   type: mongoose.Schema.Types.ObjectId,
