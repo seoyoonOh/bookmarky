@@ -45,6 +45,7 @@ export default function LinkBottom({ linkId, tagList, tagsForLink }) {
       <button className={styles.addTag} onClick={() => setEditing(!editing)}>
         {editing ? '-' : '+'}
       </button>
+      <div onClick={() => setEditing(false)} className={styles.overlay}></div>
       <div className={styles.palette}>
         {editing &&
           tagList

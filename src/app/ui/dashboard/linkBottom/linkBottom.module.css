@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   cursor: default;
+  z-index: 1;
 }
 
 .editing .link_tag {
@@ -38,6 +39,24 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
+  z-index: 1;
+}
+
+.overlay {
+  display: none;
+}
+
+.editing .overlay {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #080318;
+  opacity: 0.3;
 }
 
 .palette {
