@@ -94,6 +94,18 @@
   width: 100px;
 }
 
+.name:-webkit-autofill,
+.name:-webkit-autofill:hover,
+.name:-webkit-autofill:focus,
+.name:-webkit-autofill:active {
+  transition: background-color 5000000s ease-in-out 0s;
+}
+
+.name:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+  caret-color: white;
+}
+
 .color {
   background-color: var(--color);
   width: 36px;
