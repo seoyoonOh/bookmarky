@@ -10,6 +10,7 @@
 .link_tags {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .link_tag {
@@ -69,6 +70,8 @@
   right: 0;
   padding: 15px;
   z-index: 1;
+  max-width: fit-content;
+  flex-wrap: wrap;
 }
 
 .palette:empty {
