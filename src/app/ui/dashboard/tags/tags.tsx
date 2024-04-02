@@ -17,6 +17,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
   const [selectingColor, setSelectingColor] = useState(false);
 
   const handleTagSelect = (event: React.MouseEvent<HTMLLIElement>) => {
+    if (editing) return;
     const target = event.target as HTMLLIElement;
     let tagId = target.getAttribute('data-key') || '';
     if (selectedTag === tagId) {
