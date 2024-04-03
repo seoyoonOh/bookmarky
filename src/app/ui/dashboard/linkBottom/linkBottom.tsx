@@ -18,6 +18,7 @@ export default function LinkBottom({ linkId, tagList, tagsForLink }) {
       setSelectedTags(newSelectedTags);
       updateTags(newSelectedTags);
     }
+    setEditing(false);
   };
 
   const deselectTag = (tagId: string) => {
@@ -27,6 +28,7 @@ export default function LinkBottom({ linkId, tagList, tagsForLink }) {
       setSelectedTags(newSelectedTags);
       updateTags(newSelectedTags);
     }
+    setEditing(false);
   };
 
   const updateTags = async (selectedTags) => {
