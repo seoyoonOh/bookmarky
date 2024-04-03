@@ -28,7 +28,7 @@
   background-color: #323232;
 }
 
-.edit,
+.editTagsBtn,
 .add {
   border: 0;
   width: 36px;
@@ -91,6 +91,10 @@
   background-color: #4f4f4f;
   padding: 10px;
   border-radius: 20px;
+}
+
+.formContainer.right .form {
+  right: -10px;
 }
 
 .name {

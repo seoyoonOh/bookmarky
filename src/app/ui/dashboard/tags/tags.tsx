@@ -40,6 +40,16 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
     await deleteTag({ _id: tagId });
   };
 
+  const getPosition = (className: string) => {
+    let element = document.querySelector(`[class*="${className}"]`);
+    let rect = element?.getBoundingClientRect();
+    if (!rect) return 'right';
+
+    let screenWidth = window.innerWidth;
+    let screenCenter = screenWidth / 2;
+    return rect.left < screenCenter ? 'left' : 'right';
+  };
+
   return (
     <div className={`${styles.tags} ${editing && styles.editing}`}>
       <div onClick={() => setEditing(false)} className={styles.overlay}></div>
@@ -59,8 +69,8 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
           )}
         </div>
       ))}
-      <div className={styles.formContainer}>
-        <button className={styles.edit} onClick={() => setEditing(!editing)}>
+      <div className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}>
+        <button className={`${styles.editTagsBtn} `} onClick={() => setEditing(!editing)}>
           {editing ? '-' : '+'}
         </button>
         {editing && (
