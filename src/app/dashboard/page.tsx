@@ -17,10 +17,6 @@ export default async function Dashboard({ searchParams }) {
     <div className={styles.container}>
       <div className={styles.header}>
         <Tags tags={tagList} />
-        <div>
-          <button className={styles.edit}>edit</button>
-          <button className={styles.add}>add</button>
-        </div>
       </div>
       <div className={styles.grid}>
         {links.map(({ _id, url, title, image, tags }) => (

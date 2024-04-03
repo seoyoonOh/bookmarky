@@ -6,29 +6,8 @@
 
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-}
-
-.edit,
-.add {
-  color: white;
-  border: 0;
-  outline: 0;
-  padding: 10px 15px;
-  border-radius: 20px;
-  margin-left: 10px;
-  cursor: pointer;
-  font-weight: bolder;
-}
-
-.edit {
-  background-color: #4f4f4f;
-}
-
-.add {
-  background-color: var(--tag-mint);
 }
 
 /* --- grid --- */
