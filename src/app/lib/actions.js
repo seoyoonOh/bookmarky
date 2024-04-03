@@ -50,7 +50,16 @@ export const deleteTag = async ({ _id }) => {
 
 export const addLink = async (formData) => {
   const { url } = Object.fromEntries(formData);
-  const metadata = await urlMetadata(url);
+  let metadata;
+
+  try {
+    metadata = await urlMetadata(url);
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+
+  if (!metadata) return;
 
   try {
     connectToDB();
