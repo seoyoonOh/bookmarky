@@ -69,7 +69,10 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
           )}
         </div>
       ))}
-      <div className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}>
+      <div
+        className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}
+        style={selectedTag.length ? { display: 'none' } : {}}
+      >
         <button className={`${styles.editTagsBtn} `} onClick={() => setEditing(!editing)}>
           {editing ? '-' : '+'}
         </button>
