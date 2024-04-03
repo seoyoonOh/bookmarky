@@ -24,12 +24,12 @@
   align-items: center;
   justify-content: center;
   cursor: default;
-  z-index: 1;
 }
 
 .editing .link_tag {
   cursor: pointer;
   animation: tilt-shaking 0.3s infinite;
+  z-index: 2;
 }
 
 .addTag {
@@ -40,7 +40,10 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  z-index: 1;
+}
+
+.editing .addTag {
+  z-index: 2;
 }
 
 .overlay {
@@ -58,6 +61,7 @@
   bottom: 0;
   background-color: #080318;
   opacity: 0.3;
+  z-index: 1;
 }
 
 .palette {

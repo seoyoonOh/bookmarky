@@ -2,7 +2,6 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  z-index: 1;
 }
 
 .tag {
@@ -16,12 +15,22 @@
   justify-content: space-between;
   cursor: pointer;
   font-weight: bolder;
-  z-index: 1;
 }
 
 .editing .tag {
   padding: 10px 12px;
   gap: 4px;
+}
+
+.editTagsBtn {
+  position: relative;
+}
+
+.editing .tag,
+.editing .form,
+.editing .palette,
+.editing .editTagsBtn {
+  z-index: 2;
 }
 
 .not_selected {
@@ -38,7 +47,6 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  z-index: 1;
 }
 
 .overlay,
@@ -58,6 +66,8 @@
   bottom: 0;
   background-color: #080318;
   opacity: 0.3;
+  cursor: default;
+  z-index: 1;
 }
 
 .palette_overlay {
@@ -79,7 +89,6 @@
 .formContainer {
   height: 0;
   position: relative;
-  z-index: 1;
 }
 
 .form {
@@ -87,7 +96,6 @@
   position: absolute;
   display: flex;
   gap: 10px;
-  z-index: 1;
   background-color: #4f4f4f;
   padding: 10px;
   border-radius: 20px;
@@ -140,6 +148,7 @@
   gap: 10px;
   flex-wrap: wrap;
   padding: 10px;
+  cursor: default;
 }
 
 .paletteColor {
