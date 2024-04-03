@@ -38,6 +38,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
 
   const handleDelete = async (tagId: string) => {
     await deleteTag({ _id: tagId });
+    setEditing(false);
   };
 
   const getPosition = (className: string) => {
