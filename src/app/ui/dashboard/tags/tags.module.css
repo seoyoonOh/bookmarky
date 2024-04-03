@@ -38,7 +38,8 @@
 }
 
 .editTagsBtn,
-.add {
+.add,
+.bookmark {
   border: 0;
   width: 36px;
   height: 36px;
@@ -55,7 +56,8 @@
 }
 
 .editing .overlay,
-.palette_overlay {
+.palette_overlay,
+.bookmark_overlay {
   display: block;
   width: 100vw;
   height: 100vh;
@@ -99,6 +101,10 @@
   background-color: #4f4f4f;
   padding: 10px;
   border-radius: 20px;
+}
+
+.formContainer.left .form {
+  left: -10px;
 }
 
 .formContainer.right .form {
@@ -157,4 +163,31 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
+}
+
+.bookmark {
+  background-color: var(--tag-mint);
+  position: relative;
+}
+
+.bookmarking .bookmark {
+  z-index: 2;
+}
+
+.bookmarkForm {
+  position: fixed;
+  top: min(50%, 500px);
+  left: 50%;
+  width: 300px;
+  height: 100px;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.bookmarkForm input {
 }

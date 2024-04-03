@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from '../../../../../node_modules/next/navigation';
 import styles from './tags.module.css';
-import { addTag, deleteTag } from '@/app/lib/actions';
+import { addLink, addTag, deleteTag } from '@/app/lib/actions';
 import colors from '@/app/assets/colors.json';
 
 export default function Tags({ tags }: { tags: { _id: string; name: string; color: string }[] }) {
@@ -15,6 +15,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
   const [editing, setEditing] = useState(false);
   const [selectedColor, setSelectedColor] = useState('red');
   const [selectingColor, setSelectingColor] = useState(false);
+  const [bookmarking, setBookmarking] = useState(false);
 
   const handleTagSelect = (event: React.MouseEvent<HTMLLIElement>) => {
     if (editing) return;
@@ -52,51 +53,67 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
   };
 
   return (
-    <div className={`${styles.tags} ${editing && styles.editing}`}>
-      <div onClick={() => setEditing(false)} className={styles.overlay}></div>
-      {tags.map(({ _id, name, color }: { _id: string; name: string; color: string }) => (
+    <>
+      <div className={`${styles.tags} ${editing && styles.editing}`}>
+        <div onClick={() => setEditing(false)} className={styles.overlay}></div>
+        {tags.map(({ _id, name, color }: { _id: string; name: string; color: string }) => (
+          <div
+            className={`${styles.tag} ${selectedTag === '' ? '' : selectedTag !== _id ? styles.not_selected : ''}`}
+            style={{ '--color': `var(--tag-${color})` }}
+            key={_id}
+            data-key={_id}
+            onClick={handleTagSelect}
+          >
+            {name}
+            {editing && (
+              <div className={styles.delete} onClick={() => handleDelete(_id)}>
+                ✕
+              </div>
+            )}
+          </div>
+        ))}
         <div
-          className={`${styles.tag} ${selectedTag === '' ? '' : selectedTag !== _id ? styles.not_selected : ''}`}
-          style={{ '--color': `var(--tag-${color})` }}
-          key={_id}
-          data-key={_id}
-          onClick={handleTagSelect}
+          className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}
+          style={selectedTag.length ? { display: 'none' } : {}}
         >
-          {name}
+          <button className={`${styles.editTagsBtn} `} onClick={() => setEditing(!editing)}>
+            {editing ? '-' : '+'}
+          </button>
           {editing && (
-            <div className={styles.delete} onClick={() => handleDelete(_id)}>
-              ✕
-            </div>
+            <form action={addTag} className={styles.form} onSubmit={() => setEditing(false)}>
+              <input type="hidden" name="color" value={selectedColor} />
+              <div className={styles.color} style={{ '--color': `var(--tag-${selectedColor})` }} onClick={() => setSelectingColor(!selectingColor)}>
+                {selectingColor && (
+                  <>
+                    <div onClick={() => setSelectingColor(false)} className={styles.palette_overlay}></div>
+                    <div className={styles.palette}>
+                      {colors.map(({ color }) => (
+                        <div className={styles.paletteColor} style={{ '--color': `var(--tag-${color})` }} onClick={() => setSelectedColor(color)}></div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+              <input className={styles.name} type="text" placeholder="이름" name="name" />
+              <button className={styles.add}>+</button>
+            </form>
           )}
         </div>
-      ))}
-      <div
-        className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}
-        style={selectedTag.length ? { display: 'none' } : {}}
-      >
-        <button className={`${styles.editTagsBtn} `} onClick={() => setEditing(!editing)}>
-          {editing ? '-' : '+'}
+      </div>
+      <div className={bookmarking && styles.bookmarking}>
+        <button className={styles.bookmark} onClick={() => setBookmarking(!bookmarking)}>
+          🔖
         </button>
-        {editing && (
-          <form action={addTag} className={styles.form} onSubmit={() => setEditing(false)}>
-            <input type="hidden" name="color" value={selectedColor} />
-            <div className={styles.color} style={{ '--color': `var(--tag-${selectedColor})` }} onClick={() => setSelectingColor(!selectingColor)}>
-              {selectingColor && (
-                <>
-                  <div onClick={() => setSelectingColor(false)} className={styles.palette_overlay}></div>
-                  <div className={styles.palette}>
-                    {colors.map(({ color }) => (
-                      <div className={styles.paletteColor} style={{ '--color': `var(--tag-${color})` }} onClick={() => setSelectedColor(color)}></div>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-            <input className={styles.name} type="text" placeholder="이름" name="name" />
-            <button className={styles.add}>+</button>
-          </form>
+        {bookmarking && (
+          <>
+            <div className={styles.bookmark_overlay} onClick={() => setBookmarking(false)}></div>
+            <form action={addLink} className={styles.bookmarkForm} onSubmit={() => setBookmarking(false)}>
+              <input type="text" name="url" placeholder="url" />
+              <button>🔖</button>
+            </form>
+          </>
         )}
       </div>
-    </div>
+    </>
   );
 }
