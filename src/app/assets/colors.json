@@ -1,23 +1,30 @@
 [
   {
+    "index": 1,
     "color": "red"
   },
   {
+    "index": 2,
     "color": "orange"
   },
   {
+    "index": 3,
     "color": "yellow"
   },
   {
+    "index": 4,
     "color": "green"
   },
   {
+    "index": 5,
     "color": "mint"
   },
   {
+    "index": 6,
     "color": "purple"
   },
   {
+    "index": 7,
     "color": "plum"
   }
 ]

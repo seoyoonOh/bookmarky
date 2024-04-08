@@ -1,6 +1,6 @@
 'use client';
 
-import { updateTagsForLink } from '@/app/lib/actions';
+import { updateTagsForLink } from '../../../lib/actions';
 import { useState } from 'react';
 import styles from './linkBottom.module.css';
 
@@ -39,7 +39,7 @@ export default function LinkBottom({ linkId, tagList, tagsForLink }) {
     <div className={`${styles.link_bottom} ${editing && styles.editing}`}>
       <div className={styles.link_tags}>
         {tagsForLink?.map((tag) => (
-          <div className={styles.link_tag} style={{ '--color': `var(--tag-${tag.color})` }} onClick={() => deselectTag(tag._id)}>
+          <div key={tag._id} className={styles.link_tag} style={{ '--color': `var(--tag-${tag.color})` }} onClick={() => deselectTag(tag._id)}>
             {tag.name}
           </div>
         ))}
@@ -54,7 +54,7 @@ export default function LinkBottom({ linkId, tagList, tagsForLink }) {
             {tagList
               .filter((tag) => !selectedTags.includes(tag._id))
               .map((tag) => (
-                <div className={styles.selectableTag} style={{ '--color': `var(--tag-${tag.color})` }} onClick={() => selectTag(tag._id)}>
+                <div key={tag._id} className={styles.selectableTag} style={{ '--color': `var(--tag-${tag.color})` }} onClick={() => selectTag(tag._id)}>
                   {tag.name}
                 </div>
               ))}

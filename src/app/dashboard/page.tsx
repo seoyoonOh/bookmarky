@@ -5,7 +5,13 @@ import Link from '../../../node_modules/next/link';
 import { deleteLink } from '../lib/actions';
 import LinkBottom from '../ui/dashboard/linkBottom/linkBottom';
 
-export default async function Dashboard({ searchParams }) {
+export default async function Dashboard({
+  searchParams,
+}: {
+  searchParams: {
+    tagId: string;
+  };
+}) {
   let tagList = await fetchTags();
   let links;
   if (Object.keys(searchParams).length) {

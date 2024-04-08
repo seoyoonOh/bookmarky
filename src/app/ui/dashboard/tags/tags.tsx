@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from '../../../../../node_modules/next/navigation';
 import styles from './tags.module.css';
-import { addLink, addTag, deleteTag } from '@/app/lib/actions';
-import colors from '@/app/assets/colors.json';
+import { addLink, addTag, deleteTag } from '../../../lib/actions';
+import colors from '../../../assets/colors.json';
 
 export default function Tags({ tags }: { tags: { _id: string; name: string; color: string }[] }) {
   const searchParams = useSearchParams();
@@ -87,8 +87,13 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
                   <>
                     <div onClick={() => setSelectingColor(false)} className={styles.palette_overlay}></div>
                     <div className={styles.palette}>
-                      {colors.map(({ color }) => (
-                        <div className={styles.paletteColor} style={{ '--color': `var(--tag-${color})` }} onClick={() => setSelectedColor(color)}></div>
+                      {colors.map(({ color, index }) => (
+                        <div
+                          key={index}
+                          className={styles.paletteColor}
+                          style={{ '--color': `var(--tag-${color})` }}
+                          onClick={() => setSelectedColor(color)}
+                        ></div>
                       ))}
                     </div>
                   </>
