@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./node_modules",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
