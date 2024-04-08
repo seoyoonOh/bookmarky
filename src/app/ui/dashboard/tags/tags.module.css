@@ -51,11 +51,6 @@
 }
 
 .overlay,
-.palette_overlay {
-  display: none;
-}
-
-.editing .overlay,
 .palette_overlay,
 .bookmark_overlay {
   display: block;

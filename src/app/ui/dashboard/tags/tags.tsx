@@ -55,7 +55,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
   return (
     <>
       <div className={`${styles.tags} ${editing && styles.editing}`}>
-        <div onClick={() => setEditing(false)} className={styles.overlay}></div>
+        {editing && <div onClick={() => setEditing(false)} className={styles.overlay}></div>}
         {tags.map(({ _id, name, color }: { _id: string; name: string; color: string }) => (
           <div
             className={`${styles.tag} ${selectedTag === '' ? '' : selectedTag !== _id ? styles.not_selected : ''}`}
@@ -76,7 +76,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
           className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}
           style={selectedTag.length ? { display: 'none' } : {}}
         >
-          <button className={`${styles.editTagsBtn} `} onClick={() => setEditing(!editing)}>
+          <button className={styles.editTagsBtn} onClick={() => setEditing(!editing)}>
             {editing ? '-' : '+'}
           </button>
           {editing && (

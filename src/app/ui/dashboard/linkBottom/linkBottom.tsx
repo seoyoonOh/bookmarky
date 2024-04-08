@@ -47,17 +47,20 @@ export default function LinkBottom({ linkId, tagList, tagsForLink }) {
       <button className={styles.addTag} onClick={() => setEditing(!editing)}>
         {editing ? '-' : '+'}
       </button>
-      <div onClick={() => setEditing(false)} className={styles.overlay}></div>
-      <div className={styles.palette}>
-        {editing &&
-          tagList
-            .filter((tag) => !selectedTags.includes(tag._id))
-            .map((tag) => (
-              <div className={styles.selectableTag} style={{ '--color': `var(--tag-${tag.color})` }} onClick={() => selectTag(tag._id)}>
-                {tag.name}
-              </div>
-            ))}
-      </div>
+      {editing && (
+        <>
+          <div onClick={() => setEditing(false)} className={styles.overlay}></div>
+          <div className={styles.palette}>
+            {tagList
+              .filter((tag) => !selectedTags.includes(tag._id))
+              .map((tag) => (
+                <div className={styles.selectableTag} style={{ '--color': `var(--tag-${tag.color})` }} onClick={() => selectTag(tag._id)}>
+                  {tag.name}
+                </div>
+              ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
