@@ -1,33 +1,34 @@
 import mongoose from 'mongoose';
 const { ObjectId } = mongoose.Types;
 
-// const userSchema = new mongoose.Schema(
-//   {
-//     _id: {
-//       type: mongoose.Schema.Types.ObjectId,
-//       default: () => new ObjectId(),
-//     },
-//     username: {
-//       type: String,
-//       required: true,
-//       min: 3,
-//       max: 20,
-//     },
-//     email: {
-//       type: String,
-//       required: true,
-//       unique: true,
-//     },
-//     password: {
-//       type: String,
-//       required: true,
-//     },
-//     image: {
-//       type: String,
-//     },
-//   },
-//   { timestamps: true }
-// );
+const userSchema = new mongoose.Schema(
+  {
+    clerkId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    username: {
+      type: String,
+      unique: true,
+    },
+    photo: {
+      type: String,
+    },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
 const tagSchema = new mongoose.Schema(
   {
@@ -43,10 +44,10 @@ const tagSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'User',
-    // },
+    user: {
+      type: String,
+      ref: 'User',
+    },
   },
   { timestamps: true }
 );
@@ -71,14 +72,14 @@ const linkSchema = new mongoose.Schema(
     tags: {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag', unique: true }],
     },
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'User',
-    // },
+    user: {
+      type: String,
+      ref: 'User',
+    },
   },
   { timestamps: true }
 );
 
-// export const User = mongoose.models.User || mongoose.model('User', userSchema);
+export const User = mongoose.models.User || mongoose.model('User', userSchema);
 export const Tag = mongoose.models.Tag || mongoose.model('Tag', tagSchema);
 export const Link = mongoose.models.Link || mongoose.model('Link', linkSchema);

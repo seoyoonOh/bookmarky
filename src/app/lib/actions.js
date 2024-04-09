@@ -3,8 +3,27 @@
 import mongoose from 'mongoose';
 import { revalidatePath } from 'next/cache';
 import urlMetadata from 'url-metadata/index';
-import { Link, Tag } from './models';
+import { User, Link, Tag } from './models';
 import { connectToDB } from './utils';
+
+export const createUser = async (user) => {
+  const { id, email_addresses, username, first_name, last_name, profile_image_url } = Object.fromEntries(user);
+  try {
+    connectToDB();
+    const newUser = new User({
+      clerkId: id,
+      email: email_addresses[0].email_address,
+      username,
+      photo: profile_image_url,
+      firstName: first_name,
+      lastName: last_name,
+    });
+    await newUser.save();
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to create user!');
+  }
+};
 
 export const addTag = async (formData) => {
   const { name, color } = Object.fromEntries(formData);
