@@ -6,8 +6,8 @@ import urlMetadata from 'url-metadata/index';
 import { User, Link, Tag } from './models';
 import { connectToDB } from './utils';
 
-export const createUser = async (user) => {
-  const { id, email_addresses, username, first_name, last_name, profile_image_url } = Object.fromEntries(user);
+export const createUser = async (userData) => {
+  const { id, email_addresses, username, first_name, last_name, profile_image_url } = userData;
   try {
     connectToDB();
     const newUser = new User({

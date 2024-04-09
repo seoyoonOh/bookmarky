@@ -26,7 +26,6 @@ export async function POST(req: Request) {
   // Get the body
   const payload = await req.json();
   const body = JSON.stringify(payload);
-  const user = payload.data;
 
   // Create a new Svix instance with your secret.
   const wh = new Webhook(WEBHOOK_SECRET);
@@ -55,7 +54,9 @@ export async function POST(req: Request) {
   console.log('Webhook body:', body);
 
   try {
-    await createUser(user);
+    let userData = evt.data;
+    console.log('Webhook userData:', userData);
+    await createUser(userData);
   } catch (error) {
     console.log(error);
   }
