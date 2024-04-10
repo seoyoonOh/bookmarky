@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from '../../../../../node_mod
 import styles from './tags.module.css';
 import { addLink, addTag, deleteTag } from '../../../lib/actions';
 import colors from '../../../assets/colors.json';
+import { useEffect } from 'react';
 
 export default function Tags({ tags }: { tags: { _id: string; name: string; color: string }[] }) {
   const searchParams = useSearchParams();
@@ -16,6 +17,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
   const [selectedColor, setSelectedColor] = useState('red');
   const [selectingColor, setSelectingColor] = useState(false);
   const [bookmarking, setBookmarking] = useState(false);
+  const [addTagPosition, setAddTagPosition] = useState<'left' | 'right'>('left');
 
   const handleTagSelect = (event: React.MouseEvent<HTMLLIElement>) => {
     if (editing) return;
@@ -52,6 +54,12 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
     return rect.left < screenCenter ? 'left' : 'right';
   };
 
+  useEffect(() => {
+    if (!editing) return;
+    const calculatedPosition = getPosition('editTagsBtn');
+    setAddTagPosition(calculatedPosition || 'left');
+  }, [editing]);
+
   return (
     <>
       <div className={`${styles.tags} ${editing && styles.editing}`}>
@@ -73,7 +81,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
           </div>
         ))}
         <div
-          className={`${styles.formContainer} ${getPosition('editTagsBtn') === 'left' ? styles.left : styles.right}`}
+          className={`${styles.formContainer} ${addTagPosition === 'left' ? styles.left : styles.right}`}
           style={selectedTag.length ? { display: 'none' } : {}}
         >
           <button className={styles.editTagsBtn} onClick={() => setEditing(!editing)}>
