@@ -62,7 +62,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
 
   return (
     <>
-      <div className={`${styles.tags} ${editing && styles.editing}`}>
+      <div className={`${styles.tags} ${editing ? styles.editing : ''}`}>
         {editing && <div onClick={() => setEditing(false)} className={styles.overlay}></div>}
         {tags.map(({ _id, name, color }: { _id: string; name: string; color: string }) => (
           <div
@@ -113,7 +113,7 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
           )}
         </div>
       </div>
-      <div className={bookmarking && styles.bookmarking}>
+      <div className={bookmarking ? styles.bookmarking : ''}>
         <button className={styles.bookmark} onClick={() => setBookmarking(!bookmarking)}>
           🔖
         </button>
