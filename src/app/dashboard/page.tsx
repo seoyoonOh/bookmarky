@@ -4,6 +4,7 @@ import Tags from '../ui/dashboard/tags/tags';
 import Link from '../../../node_modules/next/link';
 import { deleteLink } from '../lib/actions';
 import LinkBottom from '../ui/dashboard/linkBottom/linkBottom';
+import { auth } from '@clerk/nextjs';
 
 export default async function Dashboard({
   searchParams,
@@ -12,12 +13,13 @@ export default async function Dashboard({
     tagId: string;
   };
 }) {
-  let tagList = await fetchTags();
+  let { userId } = auth();
+  let tagList = await fetchTags({ userId });
   let links;
   if (Object.keys(searchParams).length) {
-    links = await fetchLinksByTag(searchParams.tagId);
+    links = await fetchLinksByTag({ userId, tagId: searchParams.tagId });
   } else {
-    links = await fetchLinks();
+    links = await fetchLinks({ userId });
   }
   return (
     <div className={styles.container}>

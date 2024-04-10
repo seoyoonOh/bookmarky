@@ -2,6 +2,7 @@
 
 import mongoose from 'mongoose';
 import { revalidatePath } from 'next/cache';
+import { auth } from '@clerk/nextjs';
 import urlMetadata from 'url-metadata/index';
 import { User, Link, Tag } from './models';
 import { connectToDB } from './utils';
@@ -28,11 +29,13 @@ export const createUser = async (userData) => {
 export const addTag = async (formData) => {
   const { name, color } = Object.fromEntries(formData);
   if (name.length === 0) return;
+  let { userId } = auth();
   try {
     connectToDB();
     const newTag = new Tag({
       name,
       color,
+      user: userId,
     });
     await newTag.save();
   } catch (error) {
@@ -70,6 +73,7 @@ export const deleteTag = async ({ _id }) => {
 export const addLink = async (formData) => {
   const { url } = Object.fromEntries(formData);
   let metadata;
+  let { userId } = auth();
 
   try {
     metadata = await urlMetadata(url);
@@ -86,6 +90,7 @@ export const addLink = async (formData) => {
       url,
       title: metadata.title,
       image: metadata['og:image'] || '',
+      user: userId,
     });
     await newLink.save();
   } catch (error) {

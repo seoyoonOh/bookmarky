@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 import { Link, Tag } from './models';
 import { connectToDB } from './utils';
 
-export const fetchTags = async () => {
+export const fetchTags = async ({ userId }) => {
   try {
     connectToDB();
-    const tags = await Tag.find();
+    const tags = await Tag.find({ user: userId });
     return tags;
   } catch (error) {
     console.log(error);
@@ -13,10 +13,10 @@ export const fetchTags = async () => {
   }
 };
 
-export const fetchLinks = async () => {
+export const fetchLinks = async ({ userId }) => {
   try {
     connectToDB();
-    const links = await Link.find().populate('tags');
+    const links = await Link.find({ user: userId }).populate('tags');
     return links;
   } catch (error) {
     console.log(error);
@@ -24,10 +24,10 @@ export const fetchLinks = async () => {
   }
 };
 
-export const fetchLinksByTag = async (tagId) => {
+export const fetchLinksByTag = async ({ userId, tagId }) => {
   try {
     connectToDB();
-    const links = await Link.find({ tags: new mongoose.Types.ObjectId(tagId) }).populate('tags');
+    const links = await Link.find({ user: userId, tags: new mongoose.Types.ObjectId(tagId) }).populate('tags');
     return links;
   } catch (error) {
     console.log(error);
