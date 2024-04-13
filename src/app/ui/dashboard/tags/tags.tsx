@@ -115,14 +115,19 @@ export default function Tags({ tags }: { tags: { _id: string; name: string; colo
       </div>
       <div className={bookmarking ? styles.bookmarking : ''}>
         <button className={styles.bookmark} onClick={() => setBookmarking(!bookmarking)}>
-          🔖
+          {bookmarking ? '✕' : '🔖'}
         </button>
         {bookmarking && (
           <>
             <div className={styles.bookmark_overlay} onClick={() => setBookmarking(false)}></div>
             <form action={addLink} className={styles.bookmarkForm} onSubmit={() => setBookmarking(false)}>
-              <input type="text" name="url" placeholder="url" />
-              <button>🔖</button>
+              <div className={styles.bookmark_top}>
+                <img src="logo.svg" alt="" />
+                <span onClick={() => setBookmarking(false)}>✕</span>
+              </div>
+              <h1>북마크</h1>
+              <input type="text" name="url" placeholder="URL" />
+              <button>추가하기</button>
             </form>
           </>
         )}

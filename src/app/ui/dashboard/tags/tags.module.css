@@ -173,16 +173,58 @@
   position: fixed;
   top: min(50%, 500px);
   left: 50%;
-  width: 300px;
-  height: 100px;
+  width: min(80%, 500px);
+  height: 300px;
   border-radius: 20px;
   transform: translate(-50%, -50%);
-  background-color: white;
+  color: var(--tag-mint);
+  background-color: #080318;
   display: flex;
+  gap: 10px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
+.bookmark_top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bookmark_top img {
+  height: 15px;
+}
+
+.bookmark_top span {
+  cursor: pointer;
+}
+
+.bookmarkForm h1 {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
 .bookmarkForm input {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 20px;
+  width: 80%;
+}
+
+.bookmarkForm button {
+  color: white;
+  outline: none;
+  border: 0;
+  padding: 10px;
+  width: 80%;
+  border-radius: 20px;
+  background-color: var(--tag-mint);
+  cursor: pointer;
 }
