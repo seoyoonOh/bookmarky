@@ -27,6 +27,8 @@ export default async function Dashboard({
         <Tags tags={tagList} />
       </div>
       <div className={styles.grid}>
+        {tagList.length === 0 && <div className={styles.inst_tag}>태그를 추가하세요!</div>}
+        {links.length === 0 && <div className={styles.inst_bookmark}>북마크를 추가하세요!</div>}
         {links.map(({ _id, url, title, image, tags }) => (
           <div className={styles.link} key={_id}>
             <form action={deleteLink} className={styles.form}>

@@ -72,3 +72,19 @@
 .link h1:hover {
   text-decoration: underline;
 }
+
+.inst_tag {
+  position: absolute;
+  left: 40px;
+  background-color: #4f4f4f;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.inst_bookmark {
+  position: absolute;
+  right: 40px;
+  background-color: var(--tag-mint);
+  padding: 20px;
+  border-radius: 20px;
+}
