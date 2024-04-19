@@ -1,3 +1,5 @@
+<img width="1440" alt="screenshot_bookmarky" src="https://github.com/seoyoonOh/bookmarky/assets/68911475/26088840-7ffb-4484-88dd-0b7b785df8be">
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
