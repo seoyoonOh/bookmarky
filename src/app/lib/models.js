@@ -78,6 +78,8 @@ const linkSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+linkSchema.index({ user: 1, url: 1 }, { unique: true });
+
 export const User = mongoose.models.User || mongoose.model('User', userSchema);
 export const Tag = mongoose.models.Tag || mongoose.model('Tag', tagSchema);
 export const Link = mongoose.models.Link || mongoose.model('Link', linkSchema);
